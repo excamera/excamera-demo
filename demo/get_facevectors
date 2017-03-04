@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [[ -z $1 ]]; then
+    echo "Usage: $0 IMAGES_DIR"
+    exit 0
+fi
+
+source /tmp/root/env.sh
+
+python $DIRNAME/python/facevector.py $(find $1 -name "*.jpg")

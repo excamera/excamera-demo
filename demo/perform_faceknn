@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [[ -z $1 || -z $2 ]]; then
+    echo -e 'Usage:\n\t$0 FACE.gz IMG_PATH [IMG_PATH ...]\n'
+    echo -e 'Description:\n\tReturns "1" if ANY face in the image is from FACE.gz\n\tand "0" otherwise\n'
+    exit 0
+fi
+
+source /tmp/root/env.sh
+
+python $DIRNAME/python/faceknn.py $*

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [[ -z $1 ]]; then
+    echo "Usage: $0 IMAGE"
+    exit 0
+fi
+
+source /tmp/root/env.sh
+
+python $DIRNAME/python/faceaugmentation.py $1
+
