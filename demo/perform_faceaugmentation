@@ -2,12 +2,12 @@
 
 DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [[ -z $1 ]]; then
-    echo "Usage: $0 IMAGE"
+if [[ -z $1 || -z $2 ]]; then
+    echo "Usage: $0 IMAGE OUT_CSV"
     exit 0
 fi
 
 source /tmp/root/env.sh
 
-python $DIRNAME/python/faceaugmentation.py $1
+python $DIRNAME/python/faceaugmentation.py $*
 
