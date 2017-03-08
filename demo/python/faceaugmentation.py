@@ -65,6 +65,8 @@ def get_face_vector(rgbImg, align, net):
     return rep
 
 def face_augmentation_server():
+    print 'starting up!'
+
     align = openface.AlignDlib(os.path.join(DIRNAME, '/tmp/root/openface-package/models/dlib/shape_predictor_68_face_landmarks.dat'))
     net = openface.TorchNeuralNet(os.path.join(DIRNAME, '/tmp/root/openface-package/models/openface/nn4.small2.v1.t7'), imgDim=96, cuda=False)
 
