@@ -6,5 +6,5 @@ echo "sourcing environment"
 source /tmp/root/env.sh
 
 echo "starting server"
-python $DIRNAME/python/faceaugmentation.py
+echo python $DIRNAME/python/faceaugmentation.py
 
