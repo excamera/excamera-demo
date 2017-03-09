@@ -76,10 +76,11 @@ def face_augmentation_server():
     sock.listen(1)
     print "server started"
 
-    return
     end = False
     while( not end ):
         conn, addr = sock.accept()
+        print 'connection made'
+        return
 
         print 'getting data'
         img_base64 = ''
