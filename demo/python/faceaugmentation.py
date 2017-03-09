@@ -96,6 +96,8 @@ def face_augmentation_server():
         img_base64 = img_base64[1:]
         if( poison_symbol == 'S' ):
             end == True
+            conn.close()
+            sock.close()
             break
             
         # process image
@@ -121,7 +123,7 @@ def face_augmentation_server():
         print 'sending back face vectors'
         output_csv = ''
         for vector in face_feature_vectors:
-            output_csv += ','.join(map(str, vector)) + '\n'        
+            output_csv += ','.join(map(str, vector)) + '\n'
         
         conn.sendall(output_csv + ':')
 
