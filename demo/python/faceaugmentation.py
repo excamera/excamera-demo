@@ -11,7 +11,10 @@ import io
 HOST = 'localhost'
 PORT = 10000
 MAX_BUFFER_SIZE = 2**12
+
 DIRNAME = os.path.dirname(os.path.realpath(__file__))
+SHAPE_PREDICTOR_PATH = '/tmp/root/openface-package/models/dlib/shape_predictor_68_face_landmarks.dat'
+FACE_NN_PATH = '/tmp/root/openface-package/models/openface/nn4.small2.v1.t7'
 
 def augment_image(rgbImg):
     augmented_images = []
@@ -40,16 +43,12 @@ def augment_image(rgbImg):
     return augmented_images
     
 def get_face_vector(rgbImg, align, net):
-    '''
-    get_face_vectors: finds all faces in an image (from left to right) and featurizes them 
-    using openface CNN featurizer.
-    '''
     bbs = align.getAllFaceBoundingBoxes(rgbImg)
 
     if len(bbs) == 0:
-        raise(Exception("Unable to find a face: {}".format(img_path)))
+        raise(Exception("Unable to find a face"))
     elif len(bbs) > 1:
-        raise(Exception("Found more than one face: {}".format(img_path)))
+        raise(Exception("Found more than one face"))
         
     alignedFace = align.align(
         96,
@@ -58,7 +57,7 @@ def get_face_vector(rgbImg, align, net):
         landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
 
     if alignedFace is None:
-        raise("Unable to align image: {}".format(img_path))
+        raise("Unable to align image")
 
     rep = net.forward(alignedFace)
 
@@ -67,8 +66,8 @@ def get_face_vector(rgbImg, align, net):
 def face_augmentation_server():
     print 'starting up!'
 
-    align = openface.AlignDlib(os.path.join(DIRNAME, '/tmp/root/openface-package/models/dlib/shape_predictor_68_face_landmarks.dat'))
-    net = openface.TorchNeuralNet(os.path.join(DIRNAME, '/tmp/root/openface-package/models/openface/nn4.small2.v1.t7'), imgDim=96, cuda=False)
+    align = openface.AlignDlib(SHAPE_PREDICTOR_PATH)
+    net = openface.TorchNeuralNet(FACE_NN_PATH)
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
