@@ -75,6 +75,25 @@ def face_augmentation_server():
     sock.listen(1)
     print "server started"
 
+    # signal to the lambda that the server is ready
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    count = 0
+    not_connected = True
+    while( not_connected ):
+        try:
+            s.connect(('localhost', 10001))
+            not_connected = False
+        except:
+            print 'waiting for host to come up', count
+            if( count >= 30 ):
+                print 'waited too long'
+                sys.exit(-1)
+
+            time.sleep(1)
+            count += 1
+
+    s.close()
+
     end = False
     while( not end ):
         conn, addr = sock.accept()
