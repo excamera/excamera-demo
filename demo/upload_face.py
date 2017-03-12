@@ -30,7 +30,6 @@ r = requests.put('https://3n61exvxul.execute-api.us-east-1.amazonaws.com/prod/de
                  })
 )
 end_request = timeit.default_timer()    
-print 'request time,', end_request - start_request 
-
-print r.status_code
+#print 'request time,', end_request - start_request 
+#print r.status_code
 print r.text

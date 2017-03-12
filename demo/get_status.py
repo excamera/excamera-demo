@@ -5,6 +5,9 @@ import requests
 import json
 import sys
 import timeit
+import datetime
+
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 config = ConfigParser.ConfigParser()
 config.readfp(open('/home/jemmons/demo_excamera_auth.cfg'))
@@ -25,8 +28,19 @@ r = requests.post('https://3n61exvxul.execute-api.us-east-1.amazonaws.com/prod/d
                  })
 )
 end_request = timeit.default_timer()    
-print 'request time,', end_request - start_request 
+#print 'request time,', end_request - start_request 
 
-print r.status_code
+#print r.status_code
 response = eval(r.text)
-print response['stage']
+if( response['error'] != 'None' ):
+    print 'error:', response['error']
+    print json.dumps(response, indent=4)
+
+else:
+    print 'current_stage:', response['stage']
+
+    time_start = response['time_start']
+    time_end = response['time_current_op']
+    print 'execution_time:', datetime.datetime.strptime(time_end, DATETIME_FORMAT) -datetime.datetime.strptime(time_start, DATETIME_FORMAT)
+
+
