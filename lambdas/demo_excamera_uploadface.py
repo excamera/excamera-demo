@@ -1,4 +1,5 @@
 import subprocess as sub
+import threading
 import datetime
 import socket
 import base64
@@ -8,7 +9,7 @@ import time
 import gzip
 import StringIO
 import os
-        
+
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
         
 def lambda_handler(event, context):
@@ -53,8 +54,19 @@ def lambda_handler(event, context):
     
         # run the face augmentation server
         p = sub.Popen(["/tmp/excamera-demo-master/demo/start_faceaugmentation_server"], stdout=sub.PIPE, stderr=sub.PIPE)
-        time.sleep(5)
-    
+
+        # wait for the server to come up
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        socket.setdefaulttimeout(30) # time out 30 seconds
+        sock.bind(('localhost', 10001))
+        sock.listen(1)
+            
+        conn, addr = sock.accept() # block until server comes up
+        conn.close()
+        sock.close()
+      
+        # begin communication
         SERVER_PORT = 10000
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(('localhost', SERVER_PORT))
@@ -131,13 +143,16 @@ def lambda_handler(event, context):
             UpdateExpression='SET #ST = :s, #T = :t',
         )
         
+    # send message to coordination server
+        
     except Exception as e:
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
         dynamodb.update_item(TableName='demo-excamera', 
-            Key={ 'uuid4' : { 'S' : index }, },  
+            Key={ 'uuid4' : { 'S' : event['index'] }, },  
             ExpressionAttributeNames={ '#ST' : 'error' },
             ExpressionAttributeValues={ ':s' : { 'S' : str(e) } },
             UpdateExpression='SET #ST = :s',
         )
+        return str(e)
     
     return 'DONE'
