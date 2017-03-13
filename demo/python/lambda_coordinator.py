@@ -1,11 +1,14 @@
+import datetime
 import boto3
 import socket
 import json 
 
-FRAME_IDX_MIN = 5000
-FRAME_IDX_MAX = 6000
+FRAME_IDX_MIN = 1
+FRAME_IDX_MAX = 14001
 FRAMES_PER_LAMBDA = 60
 PORT = 10000
+
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 def start_lambda_coordinator_server():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,7 +40,18 @@ def start_lambda_coordinator_server():
         print data
         message = eval( data )
         request_id = message['request_id']
-          
+        index = message['index']
+  
+        dynamodb = boto3.client('dynamodb')
+        t = datetime.datetime.now().strftime(DATETIME_FORMAT)
+        dynamodb.update_item(TableName='demo-excamera', 
+                            Key={ 'uuid4' : { 'S' : index } },  
+                             ExpressionAttributeNames={ '#ST' : 'stage', '#T' : 'time_current_op' },
+                             ExpressionAttributeValues={ ':s' : { 'S' : 'lambda_coordinator_starting_jobs' }, 
+                                                         ':t' : { 'S' : t } },
+                             UpdateExpression='SET #ST = :s, #T = :t',
+        )
+
         for i in xrange(FRAME_IDX_MIN, FRAME_IDX_MAX, FRAMES_PER_LAMBDA):
             lower = i
             upper = min(i+FRAMES_PER_LAMBDA, FRAME_IDX_MAX)
@@ -57,6 +71,14 @@ def start_lambda_coordinator_server():
             )
 
         end = True
+        t = datetime.datetime.now().strftime(DATETIME_FORMAT)
+        dynamodb.update_item(TableName='demo-excamera', 
+                             Key={ 'uuid4' : { 'S' : index } },  
+                             ExpressionAttributeNames={ '#ST' : 'stage', '#T' : 'time_current_op' },
+                             ExpressionAttributeValues={ ':s' : { 'S' : 'lambda_coordinator_jobs_started' }, 
+                                                         ':t' : { 'S' : t } },
+                             UpdateExpression='SET #ST = :s, #T = :t',
+        )
 
     conn.close()
     sock.close()
