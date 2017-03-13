@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "starting server"
+python $DIRNAME/python/lambda_coordinator.py
