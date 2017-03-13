@@ -33,14 +33,14 @@ end_request = timeit.default_timer()
 #print r.status_code
 response = eval(r.text)
 if( response['error'] != 'None' ):
+    print json.dumps(response, indent=4, sort_keys=True)
     print 'error:', response['error']
-    print json.dumps(response, indent=4)
 
 else:
+    print json.dumps(response, indent=4, sort_keys=True)
+
     print 'current_stage:', response['stage']
 
     time_start = response['time_start']
     time_end = response['time_current_op']
     print 'execution_time:', datetime.datetime.strptime(time_end, DATETIME_FORMAT) -datetime.datetime.strptime(time_start, DATETIME_FORMAT)
-
-
