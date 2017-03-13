@@ -132,6 +132,7 @@ def face_augmentation_server():
         face_feature_vectors = []
         for rgbImg in augmented_images:
             try:
+                print 'adding vector'
                 face_feature_vector = get_face_vector(rgbImg, align, net)
                 face_feature_vectors.append( face_feature_vector )
             except Exception as e:
