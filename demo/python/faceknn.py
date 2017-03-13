@@ -104,7 +104,7 @@ def face_knn_server():
             data += d
         
         poison_symbol, video_path, target_face_vectors_gz = data.split('!')
-        print poison_symbol, frame_path, target_face_vectors_gz
+        print poison_symbol, frame_base64, target_face_vectors_gz
 
         print 'checking end condition'
         if( poison_symbol == 'S' ):
@@ -114,27 +114,27 @@ def face_knn_server():
             break
             
         # process image
-        '''
-        print 'get face vectors as np amtrix'
-        target_face_vectors = io.BytesIO( base64.b64decode(target_face_vectors_gz) )
+        print 'get face vectors as np matrix'
+        frame_base64_io = io.BytesIO( base64.b64decode(frame_base64) )
+        target_face_vectors_io = io.BytesIO( base64.b64decode(target_face_vectors_gvideoz) )
 
         # train model for the face of interest
-        face = np.asmatrix( map(lambda x: x.split(','), gzip.GzipFile(fileobj=target_face_vectors).read().strip().split('\n')) )
+        face_vectors = np.asmatrix( map(lambda x: x.split(','), gzip.GzipFile(fileobj=target_face_vectors_io).read().strip().split('\n')) )
 
-        face_labels = np.zeros( (face.shape[0], 1) )
+        face_labels = np.zeros( (face_vectors.shape[0], 1) )
         lfw_labels = np.ones( (lfw.shape[0], 1) )
         
-        combined = np.vstack( (face, lfw) )
+        combined = np.vstack( (face_vectors, lfw) )
         combined_labels = np.vstack( (face_labels, class1_labels) )
         
         # train knn model to find the face of interest
         knn = neighbors.KNeighborsClassifier(algorithm='kd_tree')
         knn.fit(combined, combined_labels[:, 0])    
-        '''
 
         # go through frames and look for face
         face_present = False
         face_frames = []
+        '''
         for i in xrange(1):
             # video decode here
             print 'open file'
@@ -151,15 +151,14 @@ def face_knn_server():
                 if( not ret ):
                     break
 
-            continue
             if ( is_face_present(rgbImg, align, net, knn) ):
-                face_present = True
                 face_frames.append(i)
-        
+
+        '''
+
         # send back resulting face feature vectors
         print 'sending back result'
         result = dict()
-        result['face_present'] = int(face_present)
         result['face_frames'] = face_frames
         
         conn.sendall(json.dumps(result) + ':')

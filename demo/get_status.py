@@ -32,7 +32,7 @@ end_request = timeit.default_timer()
 
 #print r.status_code
 response = eval(r.text)
-if( response['error'] != 'None' ):
+if( 'error' not in response.keys() or response['error'] != 'None' ):
     print json.dumps(response, indent=4, sort_keys=True)
     print 'error:', response['error']
 
