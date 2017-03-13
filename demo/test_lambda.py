@@ -10,6 +10,6 @@ print 'start connection'
 s.connect(('localhost', 10000))
 print 'send message'
 
-#s.sendall('G' + fio  + ':')            
+s.sendall('G' + fio  + ':')
 
 s.close()
