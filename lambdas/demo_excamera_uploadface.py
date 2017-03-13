@@ -9,6 +9,7 @@ import time
 import gzip
 import StringIO
 import os
+import json
 
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
         
@@ -145,7 +146,19 @@ def lambda_handler(event, context):
             UpdateExpression='SET #ST = :s, #T = :t',
         )
         
-    # send message to coordination server
+        # send message to coordination server
+        t = datetime.datetime.now().strftime(DATETIME_FORMAT)
+        dynamodb.update_item(TableName='demo-excamera', 
+            Key={ 'uuid4' : { 'S' : event['index'] }, },  
+            ExpressionAttributeNames={ '#ST' : 'stage', '#T' : 'time_current_op' },
+            ExpressionAttributeValues={ ':s' : { 'S' : 'start_parallel_lambda_jobs' }, 
+                                        ':t' : { 'S' : t } },
+            UpdateExpression='SET #ST = :s, #T = :t',
+        )
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(('ec2-54-146-181-31.compute-1.amazonaws.com', 10000))
+        s.sendall(json.dumps({'request_id' : event['request_id'] }) + ':')
+        s.close()
     
     except Exception as e:
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)

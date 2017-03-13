@@ -1,4 +1,4 @@
-mport subprocess as sub
+import subprocess as sub
 import datetime
 import socket
 import base64
@@ -100,8 +100,19 @@ def lambda_handler(event, context):
             raise Exception("could not download: " + S3_FACE_VECTORS_PATH+face_model_name)
 
         # process the frames
+        frames_with_face = []
         frames_with_face_indicator = []
         for i in xrange(start_idx, stop_idx):
+            t = datetime.datetime.now().strftime(DATETIME_FORMAT)
+            dynamodb.update_item(TableName='demo-excamera', 
+                Key={ 'uuid4' : { 'S' : index } },  
+                ExpressionAttributeNames={ '#ST' : 'stage', '#T' : 'time_current_op', '#F' : 'frames_with_face' },
+                ExpressionAttributeValues={ ':s' : { 'S' : 'frame' + str(i) + '_being_processed' }, 
+                                            ':t' : { 'S' : t },
+                                            ':f' : { 'L' : [ { 'N' : str(frame_num) } for frame_num in frames_with_face ] } 
+                },
+                UpdateExpression='SET #ST = :s, #T = :t, #F = :f',
+            )
 
             # get frame from s3
             try:
@@ -134,9 +145,9 @@ def lambda_handler(event, context):
             
             # record the result
             frames_with_face_indicator.append( json.loads(data)['face_present'] )
-
-        frames_with_face = filter(lambda x: x[0], zip(frames_with_face_indicator, range(start_idx, stop_idx)))
-        frames_with_face = map(lambda x: x[1], frames_with_face)
+            
+            frames_with_face = filter(lambda x: x[0], zip(frames_with_face_indicator, range(start_idx, stop_idx)))
+            frames_with_face = map(lambda x: x[1], frames_with_face)
         
         # end communication
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
