@@ -25,7 +25,6 @@ SHAPE_PREDICTOR_PATH = '/tmp/root/openface-package/models/dlib/shape_predictor_6
 FACE_NN_PATH = '/tmp/root/openface-package/models/openface/nn4.small2.v1.t7'
 
 def is_face_present(rgbImg, align, net, knn):
-
     # get face vectors
     bbs = align.getAllFaceBoundingBoxes(rgbImg)
     face_vectors = []
