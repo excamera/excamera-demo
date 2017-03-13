@@ -19,14 +19,14 @@ def lambda_handler(event, context):
         dynamodb.update_item(TableName='demo-excamera', 
             Key={ 'uuid4' : { 'S' : event['index'] }, },  
             ExpressionAttributeNames={ '#ST' : 'stage', '#T' : 'time_current_op' },
-            ExpressionAttributeValues={ ':s' : { 'S' : 'face_vector_retrieve_iamge' }, 
+            ExpressionAttributeValues={ ':s' : { 'S' : 'face_vector_retrieve_image' }, 
                                         ':t' : { 'S' : t } },
             UpdateExpression='SET #ST = :s, #T = :t',
         )
         
         # get the base64 image
         s3 = boto3.client('s3')
-        response = s3.get_object(Bucket='demo-excamera', Key=event['image_key'])
+        response = s3.get_object(Bucket='demo-excamera-s3', Key=event['image_key'])
         base64_image = response['Body'].read()
         
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
@@ -40,7 +40,7 @@ def lambda_handler(event, context):
         
         # download the dependencies
         os.system("rm -rf /tmp/*")
-        os.system("cd /tmp && curl https://s3.amazonaws.com/demo-excamera/root-495M-2017-02-06.tar.gz | tar xz")
+        os.system("cd /tmp && curl https://s3-us-west-2.amazonaws.com/demo-excamera-s3/root-495M-2017-02-06.tar.gz | tar xz")
         os.system("cd /tmp && curl -X GET https://codeload.github.com/excamera/excamera-demo/zip/master -o excamera-demo-master.zip && unzip excamera-demo-master.zip")
     
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
@@ -68,6 +68,7 @@ def lambda_handler(event, context):
       
         # begin communication
         SERVER_PORT = 10000
+        socket.setdefaulttimeout(300)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(('localhost', SERVER_PORT))
         
@@ -94,6 +95,9 @@ def lambda_handler(event, context):
             
             data += d
         s.close()
+        
+        if( data == '' ):
+            raise Exception("could not process face image!!!")
     
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
         dynamodb.update_item(TableName='demo-excamera', 
@@ -110,7 +114,6 @@ def lambda_handler(event, context):
         s.sendall('S:')
         s.close()
         
-        time.sleep(5)
         p.kill()
         out, err = p.communicate()
         
@@ -131,8 +134,7 @@ def lambda_handler(event, context):
         
         face_vector_key = 'uploaded-faces-vectors/' + event['request_id'] + '.csv.gz'
         s3 = boto3.client('s3')
-        s3.put_object(Bucket='demo-excamera', Key=face_vector_key, Body=sio.getvalue())
-    
+        s3.put_object(Bucket='demo-excamera-s3', Key=face_vector_key, Body=sio.getvalue())
     
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
         dynamodb.update_item(TableName='demo-excamera', 
@@ -144,7 +146,7 @@ def lambda_handler(event, context):
         )
         
     # send message to coordination server
-        
+    
     except Exception as e:
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
         dynamodb.update_item(TableName='demo-excamera', 

@@ -33,7 +33,7 @@ def lambda_handler(event, context):
         )
         
         s3 = boto3.client('s3')
-        s3.put_object(Bucket='demo-excamera', Key=image_key, Body=event['image'])
+        s3.put_object(Bucket='demo-excamera-s3', Key=image_key, Body=event['image'])
     
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
         dynamodb.update_item(TableName='demo-excamera', 
@@ -46,7 +46,7 @@ def lambda_handler(event, context):
         
         l = boto3.client('lambda')
         response = l.invoke(
-            FunctionName='demo_excamera_uploadface',
+            FunctionName='arn:aws:lambda:us-west-2:387291866455:function:demo_excamera_uploadface',
             InvocationType='Event',
             LogType='Tail',
             Payload=json.dumps({
