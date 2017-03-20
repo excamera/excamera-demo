@@ -60,7 +60,6 @@ def face_knn_server():
     
     # get face dectection model
     align = openface.AlignDlib(SHAPE_PREDICTOR_PATH)
-    face_aligner_end = timeit.default_timer()
 
     # get face featurizer
     net = openface.TorchNeuralNet(FACE_NN_PATH, imgDim=96, cuda=False)

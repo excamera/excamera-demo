@@ -64,7 +64,8 @@ def start_lambda_coordinator_server():
             }
             
             response = l.invoke(
-                FunctionName='arn:aws:lambda:us-west-2:387291866455:function:demo_excamera_recognizeface',
+#                FunctionName='arn:aws:lambda:us-west-2:387291866455:function:demo_excamera_recognizeface',
+                FunctionName='arn:aws:lambda:us-west-1:387291866455:function:demo_excamera_recognizeface',
                 InvocationType='Event',
                 LogType='Tail',
                 Payload=json.dumps(lambda_job_args)
