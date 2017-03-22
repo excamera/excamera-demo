@@ -1,4 +1,4 @@
-[-] lambda to be used in demo
-[-] lambda to perform data augmentation (store in s3 bucket)
+[x] lambda to be used in demo
+[x] lambda to perform data augmentation (store in s3 bucket)
 [X] api endpoint (https://hq1pnoxl8b.execute-api.us-east-1.amazonaws.com/prod)
-[-] single script that should be run in the root dir
+[x] single script that should be run in the root dir
