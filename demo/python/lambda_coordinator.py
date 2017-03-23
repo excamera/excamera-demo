@@ -3,10 +3,11 @@ import datetime
 import boto3
 import socket
 import json 
+import random
 
 FRAME_IDX_MIN = 1
-FRAME_IDX_MAX = 150000
-FRAMES_PER_LAMBDA = 150
+FRAME_IDX_MAX = 120000
+FRAMES_PER_LAMBDA = 75
 PORT = 10000
 
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
@@ -14,16 +15,25 @@ DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 # fire up lambda worker
 def launch_lambda(bundle):
     conn = boto3.client('lambda', region_name=bundle['region'])
-    response = conn.invoke(
-        FunctionName=bundle['function_name'],
-        InvocationType='Event',
-        LogType='Tail',
-        Payload=json.dumps(bundle['job_args'])
-    )
     
+    while True:
+        response = conn.invoke(
+            FunctionName=bundle['function_name'],
+            InvocationType='Event',
+            LogType='Tail',
+            Payload=json.dumps(bundle['job_args'])
+        )
+
+        if response['ResponseMetadata']['HTTPStatusCode'] == 202:
+            break
+        else:
+            print response
+
     return response
 
 def start_lambda_coordinator_server():
+    pool = mp.Pool(25)
+
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('0.0.0.0', PORT))
@@ -68,12 +78,26 @@ def start_lambda_coordinator_server():
         lambda_names = ['arn:aws:lambda:us-west-1:387291866455:function:demo_excamera_recognizeface',
                         'arn:aws:lambda:us-west-2:387291866455:function:demo_excamera_recognizeface',
                         'arn:aws:lambda:us-east-1:387291866455:function:demo_excamera_recognizeface',
-                        'arn:aws:lambda:us-east-2:387291866455:function:demo_excamera_recognizeface']
+                        'arn:aws:lambda:us-east-2:387291866455:function:demo_excamera_recognizeface',
+        #                'arn:aws:lambda:eu-west-1:387291866455:function:demo_excamera_recognizeface',
+        #                'arn:aws:lambda:eu-central-1:387291866455:function:demo_excamera_recognizeface',
+        #                'arn:aws:lambda:eu-west-2:387291866455:function:demo_excamera_recognizeface',
+        #                'arn:aws:lambda:ap-southeast-1:387291866455:function:demo_excamera_recognizeface',
+        #                'arn:aws:lambda:ap-southeast-2:387291866455:function:demo_excamera_recognizeface',
+        #                'arn:aws:lambda:ap-northeast-2:387291866455:function:demo_excamera_recognizeface'
+        ]
 
         lambda_regions = ['us-west-1',
                           'us-west-2',
                           'us-east-1',
-                          'us-east-2']
+                          'us-east-2',
+        #                  'eu-west-1',
+        #                  'eu-central-1',
+        #                  'eu-west-2',
+        #                  'ap-southwest-1',
+        #                  'ap-southwest-2',
+        #                  'ap-northeast-2'
+        ]
 
         assert(len(lambda_names) == len(lambda_regions))
 
@@ -81,8 +105,6 @@ def start_lambda_coordinator_server():
                              request_id+".csv.gz", "request_id": request_id} \
                             for i in xrange(FRAME_IDX_MIN, FRAME_IDX_MAX, FRAMES_PER_LAMBDA)]
 
-        print len(lambda_job_args)
-        print FRAME_IDX_MIN, FRAME_IDX_MAX, FRAMES_PER_LAMBDA
 
         lambda_bundle = []
         for i in xrange(len(lambda_job_args)):
@@ -95,32 +117,18 @@ def start_lambda_coordinator_server():
             }
             lambda_bundle.append(bundle)
 
-        pool = mp.Pool(100)
+        # shuffle the list
+        random.shuffle(lambda_bundle)
+
         responses = pool.map(launch_lambda, lambda_bundle)
+
+        print responses
+
+        print len(lambda_job_args)
+        print FRAME_IDX_MIN, FRAME_IDX_MAX, FRAMES_PER_LAMBDA
         print len(responses)
 
-        # l = boto3.client('lambda', region_name='us-west-1')
-
-        # for i in xrange(FRAME_IDX_MIN, FRAME_IDX_MAX, FRAMES_PER_LAMBDA):
-        #     lower = i
-        #     upper = min(i+FRAMES_PER_LAMBDA, FRAME_IDX_MAX)
-
-        #     lambda_job_args = {
-        #         "frame_start_idx": lower,
-        #         "frame_stop_idx": upper,
-        #         "face_model": request_id+".csv.gz",
-        #         "request_id": request_id
-        #     }
-        
-        #     response = l.invoke(
-        #         FunctionName='arn:aws:lambda:us-west-1:387291866455:function:demo_excamera_recognizeface',
-        #         #FunctionName='arn:aws:lambda:us-west-2:387291866455:function:demo_excamera_recognizeface',
-        #         InvocationType='Event',
-        #         LogType='Tail',
-        #         Payload=json.dumps(lambda_job_args)
-        #     )
-
-        end = True
+        # end = True
         t = datetime.datetime.now().strftime(DATETIME_FORMAT)
         dynamodb.update_item(TableName='demo-excamera', 
                              Key={ 'uuid4' : { 'S' : index } },  
