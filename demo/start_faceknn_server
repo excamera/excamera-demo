@@ -1,9 +1,0 @@
-#!/bin/bash -e
-
-DIRNAME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-echo "sourcing environment"
-source /tmp/root/env.sh
-
-echo "starting server"
-python $DIRNAME/python/faceknn.py
