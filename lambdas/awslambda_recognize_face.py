@@ -1,4 +1,4 @@
-import subprocess as sub
+mport subprocess as sub
 import socket
 import base64
 import gzip
@@ -26,11 +26,11 @@ def lambda_handler(event, context):
         
         # download the dependencies
         os.system("rm -rf /tmp/*")
-        os.system("cd /tmp && curl https://s3-us-west-2.amazonaws.com/demo-excamera-s3/root-495M-2017-02-06.tar.gz | tar xz")
-        os.system("cd /tmp && curl -X GET https://s3-us-west-2.amazonaws.com/demo-excamera-s3/excamera-demo-master.zip -o excamera-demo-master.zip && unzip excamera-demo-master.zip")
+        os.system("cd /tmp && curl https://s3.amazonaws.com/serverless-face-recognition/root-495M-2017-02-06.tar.gz | tar xz")
+        os.system("cd /tmp && curl -X GET https://s3.amazonaws.com/serverless-face-recognition/deps.zip -o deps.zip && unzip deps.zip")
     
         # start the face augmentation server
-        p = sub.Popen(["/tmp/excamera-demo-master/demo/start_faceknn_server"], stdout=sub.PIPE, stderr=sub.PIPE)
+        p = sub.Popen(["/tmp/deps/start_faceknn_server"], stdout=sub.PIPE, stderr=sub.PIPE)
 
         # wait for the server to come up
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
