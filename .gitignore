@@ -1,9 +1,5 @@
 # dependencies
-deps/root
-deps/lfw_funneled
-deps/env.sh
-deps/lfw_face_vectors.csv
-deps/lfw_face_vectors.csv.gz
+blobs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

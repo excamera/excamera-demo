@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# copy the dependencies to s3
+
+
 # create lambda executor role
 echo "adding 'lambda-executor' role"
 aws iam create-role --role-name lambda-executor --assume-role-policy-document file://lambdas/AWSLambdaRole.json > .lambda-executor.role.json

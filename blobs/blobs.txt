@@ -1,0 +1,3 @@
+deps.zip
+lfw_face_vectors.csv.gz
+root-495M-2017-02-06.tar.gz
