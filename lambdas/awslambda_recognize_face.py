@@ -1,4 +1,4 @@
-mport subprocess as sub
+import subprocess as sub
 import socket
 import base64
 import gzip
