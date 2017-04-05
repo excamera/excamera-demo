@@ -1,8 +1,13 @@
 #!/bin/bash -e
 
-# copy the dependencies to s3
+
+# create bucket
+echo "creating bucket"
 readonly UUID=$(uuidgen)
 aws s3api create-bucket --bucket $UUID > .bucket.s3.json
+
+# copy the dependencies to s3
+echo "uploading dependencies to s3"
 aws s3 cp --acl public-read blobs/deps.zip s3://$UUID/deps.zip
 aws s3 cp --acl public-read blobs/root-495M-2017-02-06.tar.gz s3://$UUID/root-495M-2017-02-06.tar.gz
 aws s3 cp --acl public-read blobs/lfw_face_vectors.csv.gz s3://$UUID/lfw_face_vectors.csv.gz
