@@ -1,5 +1,9 @@
 # dependencies
 blobs
+.bucket.s3.json
+.lambda-executor.role.json
+.prepare-face-recognizer.lambda.json
+.recognize_face.lambda.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

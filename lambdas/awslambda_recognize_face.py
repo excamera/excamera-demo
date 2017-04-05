@@ -25,9 +25,16 @@ def lambda_handler(event, context):
         base64_face_vectors_gz = base64.b64encode( sio.getvalue() )
         
         # download the dependencies
+        ROOT_URL = os.environ['FACE_ROOT']
+        DEPS_URL = os.environ['FACE_DEPS']
+
         os.system("rm -rf /tmp/*")
-        os.system("cd /tmp && curl https://s3.amazonaws.com/serverless-face-recognition/root-495M-2017-02-06.tar.gz | tar xz")
-        os.system("cd /tmp && curl -X GET https://s3.amazonaws.com/serverless-face-recognition/deps.zip -o deps.zip && unzip deps.zip")
+        os.system("cd /tmp && curl -X GET {} | tar xz".format(ROOT_URL))
+        os.system("cd /tmp && curl -X GET {} -o deps.zip && unzip deps.zip".format(DEPS_URL))
+
+        # os.system("rm -rf /tmp/*")
+        # os.system("cd /tmp && curl https://s3.amazonaws.com/serverless-face-recognition/root-495M-2017-02-06.tar.gz | tar xz")
+        # os.system("cd /tmp && curl -X GET https://s3.amazonaws.com/serverless-face-recognition/deps.zip -o deps.zip && unzip deps.zip")
     
         # start the face augmentation server
         p = sub.Popen(["/tmp/deps/start_faceknn_server"], stdout=sub.PIPE, stderr=sub.PIPE)
