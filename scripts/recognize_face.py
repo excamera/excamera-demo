@@ -39,8 +39,8 @@ def main():
 
     res = eval(response['Payload'].read())
     try:
-        facevectors =  res['face_present']
-        print facevectors
+        face_present =  res['face_present']
+        print face_present
     except:
         print res['error']
 
