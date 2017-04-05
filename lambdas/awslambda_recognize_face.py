@@ -29,7 +29,7 @@ def lambda_handler(event, context):
         DEPS_URL = os.environ['FACE_DEPS']
 
         os.system("rm -rf /tmp/*")
-        os.system("cd /tmp && curl -X GET {} | tar xz".format(ROOT_URL))
+        os.system("cd /tmp && curl {} | tar xz".format(ROOT_URL))
         os.system("cd /tmp && curl -X GET {} -o deps.zip && unzip deps.zip".format(DEPS_URL))
 
         # os.system("rm -rf /tmp/*")
