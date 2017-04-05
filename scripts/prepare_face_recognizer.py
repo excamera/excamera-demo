@@ -4,11 +4,14 @@ import base64
 import boto3
 import json
 import sys
+import os
 
 ################################################################################
 # constants
 ################################################################################
-FunctionName = 'arn:aws:lambda:us-west-2:387291866455:function:prepare_face_recognizer'
+DIRNAME = os.path.dirname(os.path.abspath(__file__))
+
+FunctionName = json.load( open(DIRNAME+'/../.prepare-face-recognizer.lambda.json', 'r') )['FunctionArn']
 
 ################################################################################
 # code
@@ -38,7 +41,7 @@ def main():
         facevectors =  res['facevectors']
         print facevectors
     except:
-        print res['error']
+        sys.stderr.write( str(res) )
 
 if(__name__ == '__main__'):
     main()

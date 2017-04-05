@@ -4,11 +4,14 @@ import base64
 import boto3
 import json
 import sys
+import os
 
 ################################################################################
 # constants
 ################################################################################
-FunctionName = 'arn:aws:lambda:us-west-2:387291866455:function:recognize_face'
+DIRNAME = os.path.dirname(os.path.abspath(__file__))
+
+FunctionName = json.load( open(DIRNAME+'/../.recognize_face.lambda.json', 'r') )['FunctionArn']
 
 ################################################################################
 # code
@@ -42,7 +45,7 @@ def main():
         face_present =  res['face_present']
         print face_present
     except:
-        print res['error']
+        sys.stderr.write( str(res) ) 
 
 if(__name__ == '__main__'):
     main()
