@@ -20,7 +20,7 @@ PORT = 10000
 MAX_BUFFER_SIZE = 2**12
 
 DIRNAME = os.path.dirname(os.path.realpath(__file__))
-LFW_ENDPOINT = 'https://s3-us-west-2.amazonaws.com/demo-excamera-s3/lfw_face_vectors.csv.gz'
+LFW_ENDPOINT = 'https://s3.amazonaws.com/serverless-face-recognition/lfw_face_vectors.csv.gz'
 SHAPE_PREDICTOR_PATH = '/tmp/root/openface-package/models/dlib/shape_predictor_68_face_landmarks.dat'
 FACE_NN_PATH = '/tmp/root/openface-package/models/openface/nn4.small2.v1.t7'
 
