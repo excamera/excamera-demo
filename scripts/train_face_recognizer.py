@@ -17,7 +17,7 @@ FunctionName = json.load( open(DIRNAME+'/../.prepare-face-recognizer.lambda.json
 # code
 ################################################################################
 def main():
-    if( len(sys.argv) != 2 ):
+    if( len(sys.argv) != 2  or sys.argv[1] == '--help' ):
         print 'usage: ' + sys.argv[0] + ' IMAGE.jpg > FACEVECTORS.csv'
         print 'description:'
         print '\treturns the augmented feature vectors for the face in IMAGE.csv.'

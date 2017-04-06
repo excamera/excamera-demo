@@ -17,7 +17,7 @@ FunctionName = json.load( open(DIRNAME+'/../.recognize_face.lambda.json', 'r') )
 # code
 ################################################################################
 def main():
-    if( len(sys.argv) != 3 ):
+    if( len(sys.argv) != 3 or sys.argv[1] == '--help' ):
         print 'usage: ' + sys.argv[0] + ' FACEVECTORS.csv IMAGE.jpg'
         print 'description:'
         print '\treturns `true` or `false` if the face used to generate'

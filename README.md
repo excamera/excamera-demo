@@ -46,7 +46,7 @@ Done!
 ```
 
 ```bash
-#remove the deployed code when you are done
+# remove the deployed code when you are done
 $ uninstall_lambdas.sh
 removing s3 bucket
 delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/lfw_face_vectors.csv.gz
@@ -62,13 +62,13 @@ Done!
 
 ```bash
 # generating a model for a face
-$ ./train_face_recognizer.py
+$ ./train_face_recognizer.py --help
 description:
     returns the augmented feature vectors for the face in IMAGE.csv.
             Assume exactly one face in the image
 
 # using a model to recognize a face in an image
-$ ./recognize_face.py
+$ ./recognize_face.py --help
 usage: ./recognize_face.py FACEVECTORS.csv IMAGE.jpg
 description:
     returns `true` or `false` if the face used to generate
