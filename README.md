@@ -13,27 +13,27 @@ sparks new ideas or influences your research, please cite us (see below)!
 
 ```bash
 # install dependencies
->$ sudo apt-get install python-pip
+$ apt-get install python-pip
 
->$ git clone https://github.com/excamera/serverless-face-recognition.git
->$ cd serverless-face-recognition
->$ sudo pip install -r requirements.txt
+$ git clone https://github.com/excamera/serverless-face-recognition.git
+$ cd serverless-face-recognition
+$ pip install -r requirements.txt # installs awscli and boto3
 
 # setup the awscli (create an access key and enter details below)
->$ aws configure
+$ aws configure
 AWS Access Key ID []: ****************ANWQ
 AWS Secret Access Key []: ****************JawS
 Default region name []: us-east-1
 Default output format [None]:
 
 # download the blobs necessary for the face recognizer
->$ cd blobs
->$ ./get_blobs.sh
+$ cd blobs
+$ ./get_blobs.sh
 downloading...
->$ cd ..
+$ cd ..
 
 # deploy our face recognition code to your account
->$ ./install_lambdas.sh
+$ ./install_lambdas.sh
 creating bucket
 uploading dependencies to s3
 upload: blobs/deps.zip to s3://9a480eb7-be5b-4e15-81fe-4de41323907e/deps.zip
@@ -47,7 +47,7 @@ Done!
 
 ```bash
 #remove the deployed code when you are done
->$ uninstall_lambdas.sh
+$ uninstall_lambdas.sh
 removing s3 bucket
 delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/lfw_face_vectors.csv.gz
 delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/deps.zip
@@ -62,13 +62,13 @@ Done!
 
 ```bash
 # generating a model for a face
->$ ./train_face_recognizer.py
+$ ./train_face_recognizer.py
 description:
     returns the augmented feature vectors for the face in IMAGE.csv.
             Assume exactly one face in the image
 
 # using a model to recognize a face in an image
->$ ./recognize_face.py
+$ ./recognize_face.py
 usage: ./recognize_face.py FACEVECTORS.csv IMAGE.jpg
 description:
     returns `true` or `false` if the face used to generate
@@ -82,17 +82,17 @@ the model to check if John's face is in some of the example photos.
 
 ```bash
 # generate a model for John's face
->$ cd scripts
->$ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
+$ cd scripts
+$ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
 
 # use the model to see if John's face is present in an image
->$ ./recognize_face.py john.model.csv pics/john1.jpg
+$ ./recognize_face.py john.model.csv pics/john1.jpg
 True
 
->$ ./recognize_face.py john.model.csv pics/john2.jpg
+$ ./recognize_face.py john.model.csv pics/john2.jpg
 True
 
->$ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
+$ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
 False
 ```
 
