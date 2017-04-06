@@ -65,14 +65,14 @@ Done!
 $ ./train_face_recognizer.py --help
 description:
     returns the augmented feature vectors for the face in IMAGE.csv.
-            Assume exactly one face in the image
+    Assume exactly one face in the image
 
 # using a model to recognize a face in an image
 $ ./recognize_face.py --help
 usage: ./recognize_face.py FACEVECTORS.csv IMAGE.jpg
 description:
     returns `true` or `false` if the face used to generate
-            FACEVECTORS.csv is present in IMAGE.csv
+    FACEVECTORS.csv is present in IMAGE.csv
 ```
 
 ### Example:
