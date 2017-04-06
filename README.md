@@ -54,7 +54,7 @@ usage: ./recognize_face.py FACEVECTORS.csv IMAGE.jpg
 description:
     returns `true` or `false` if the face used to generate
             FACEVECTORS.csv is present in IMAGE.csv
-            ```
+```
 
 ### Example:
 
