@@ -39,6 +39,19 @@ adding 'recognize-face' lambda
 Done!
 ```
 
+```bash
+#remove the deployed code when you are done
+>$ uninstall_lambdas.sh
+removing s3 bucket
+delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/lfw_face_vectors.csv.gz
+delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/deps.zip
+delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/root-495M-2017-02-06.tar.gz
+removing 'lambda-executor' role
+removing 'prepare-face-recognizer' lambda
+removing 'recognize-face' lambda
+Done!
+```
+
 ### Usage:
 
 ```bash
