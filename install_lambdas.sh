@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-
 # create bucket
 echo "creating bucket"
 readonly UUID=$(uuidgen)
