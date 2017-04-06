@@ -47,7 +47,7 @@ Done!
 
 ```bash
 # remove the deployed code when you are done
-$ uninstall_lambdas.sh
+$ ./uninstall_lambdas.sh
 removing s3 bucket
 delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/lfw_face_vectors.csv.gz
 delete: s3://9a480eb7-be5b-4e15-81fe-4de41323907e/deps.zip
