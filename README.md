@@ -26,6 +26,12 @@ AWS Secret Access Key []: ****************JawS
 Default region name []: us-east-1
 Default output format [None]:
 
+# download the blobs necessary for the face recognizer
+>$ cd blobs
+>$ ./get_blobs.sh
+downloading...
+>$ cd ..
+
 # deploy our face recognition code to your account
 >$ ./install_lambdas.sh
 creating bucket
