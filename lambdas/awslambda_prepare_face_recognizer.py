@@ -19,10 +19,6 @@ def lambda_handler(event, context):
         os.system("cd /tmp && curl {} | tar xz".format(ROOT_URL))
         os.system("cd /tmp && curl -X GET {} -o deps.zip && unzip deps.zip".format(DEPS_URL))
 
-        # os.system("rm -rf /tmp/*")
-        # os.system("cd /tmp && curl https://s3.amazonaws.com/serverless-face-recognition/root-495M-2017-02-06.tar.gz | tar xz")
-        # os.system("cd /tmp && curl -X GET https://s3.amazonaws.com/serverless-face-recognition/deps.zip -o deps.zip && unzip deps.zip")
-    
         # run the face augmentation server
         p = sub.Popen(["/tmp/deps/start_faceaugmentation_server"], stdout=sub.PIPE, stderr=sub.PIPE)
 
