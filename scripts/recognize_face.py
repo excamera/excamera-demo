@@ -25,14 +25,14 @@ def main():
         print()
         sys.exit(0)
 
-    sys.stderr( 'reading input files' )
-    query_facevectors = base64.b64encode( open(sys.argv[1], 'rb').read() )
-    base64_image = base64.b64encode( open(sys.argv[2], 'rb').read() )
+    sys.stderr.write( 'reading input files\n' )
+    query_facevectors = base64.b64encode( open(sys.argv[1], 'rb').read() ).decode('utf-8')
+    base64_image = base64.b64encode( open(sys.argv[2], 'rb').read() ).decode('utf-8')
 
-    sys.stderr( 'connecting to AWS lambda' )
+    sys.stderr.write( 'connecting to AWS lambda\n' )
     conn = boto3.client('lambda')
 
-    sys.stderr( 'waiting for remote lambda worker to finish' )
+    sys.stderr.write( 'waiting for remote lambda worker to finish\n' )
     response = conn.invoke(
         FunctionName=FunctionName,
         InvocationType='RequestResponse',
@@ -43,7 +43,7 @@ def main():
         })
     )
 
-    sys.stderr( 'reading result from remote lambda worker' )
+    sys.stderr.write( 'reading result from remote lambda worker\n' )
     res = eval(response['Payload'].read())
     try:
         face_present =  res['face_present']
