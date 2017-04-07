@@ -25,10 +25,13 @@ def main():
         print
         sys.exit(0)
 
+    sys.stderr( 'reading input file' )
     base64_image = base64.b64encode( open(sys.argv[1], 'rb').read() )
 
+    sys.stderr( 'connecting to AWS lambda' )
     conn = boto3.client('lambda')
     
+    sys.stderr( 'waiting for remote lambda worker to finish' )
     response = conn.invoke(
     FunctionName=FunctionName,
         InvocationType='RequestResponse',
@@ -36,6 +39,7 @@ def main():
         Payload=json.dumps({'base64_image':base64_image})
     )
     
+    sys.stderr( 'reading result from remote lambda worker' )
     res = eval(response['Payload'].read())
     try:
         facevectors =  res['facevectors']
