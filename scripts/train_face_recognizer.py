@@ -18,20 +18,20 @@ FunctionName = json.load( open(DIRNAME+'/../.prepare-face-recognizer.lambda.json
 ################################################################################
 def main():
     if( len(sys.argv) != 2  or sys.argv[1] == '--help' ):
-        print 'usage: ' + sys.argv[0] + ' IMAGE.jpg > FACEVECTORS.csv'
-        print 'description:'
-        print '\treturns the augmented feature vectors for the face in IMAGE.csv.'
-        print '\tAssume exactly one face in the image'
-        print
+        print( 'usage: ' + sys.argv[0] + ' IMAGE.jpg > FACEVECTORS.csv' )
+        print( 'description:' )
+        print( '\treturns the augmented feature vectors for the face in IMAGE.csv.' )
+        print( '\tAssume exactly one face in the image' )
+        print()
         sys.exit(0)
 
-    sys.stderr( 'reading input file' )
-    base64_image = base64.b64encode( open(sys.argv[1], 'rb').read() )
+    sys.stderr.write( 'reading input file\n' )
+    base64_image = base64.b64encode( open(sys.argv[1], 'rb').read() ).decode('utf-8')
 
-    sys.stderr( 'connecting to AWS lambda' )
+    sys.stderr.write( 'connecting to AWS lambda\n' )
     conn = boto3.client('lambda')
     
-    sys.stderr( 'waiting for remote lambda worker to finish' )
+    sys.stderr.write( 'waiting for remote lambda worker to finish\n' )
     response = conn.invoke(
     FunctionName=FunctionName,
         InvocationType='RequestResponse',
@@ -39,11 +39,11 @@ def main():
         Payload=json.dumps({'base64_image':base64_image})
     )
     
-    sys.stderr( 'reading result from remote lambda worker' )
+    sys.stderr.write( 'reading result from remote lambda worker\n' )
     res = eval(response['Payload'].read())
     try:
         facevectors =  res['facevectors']
-        print facevectors
+        print( facevectors )
     except:
         sys.stderr.write( str(res) )
 

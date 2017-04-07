@@ -18,11 +18,11 @@ FunctionName = json.load( open(DIRNAME+'/../.recognize_face.lambda.json', 'r') )
 ################################################################################
 def main():
     if( len(sys.argv) != 3 or sys.argv[1] == '--help' ):
-        print 'usage: ' + sys.argv[0] + ' FACEVECTORS.csv IMAGE.jpg'
-        print 'description:'
-        print '\treturns `true` or `false` if the face used to generate'
-        print '\tFACEVECTORS.csv is present in IMAGE.csv'
-        print
+        print( 'usage: ' + sys.argv[0] + ' FACEVECTORS.csv IMAGE.jpg' )
+        print( 'description:' )
+        print( '\treturns `true` or `false` if the face used to generate' )
+        print( '\tFACEVECTORS.csv is present in IMAGE.csv' )
+        print()
         sys.exit(0)
 
     sys.stderr( 'reading input files' )
@@ -47,7 +47,7 @@ def main():
     res = eval(response['Payload'].read())
     try:
         face_present =  res['face_present']
-        print face_present
+        print( face_present )
     except:
         sys.stderr.write( str(res) ) 
 
