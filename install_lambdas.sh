@@ -19,7 +19,7 @@ aws iam attach-role-policy --role-name lambda-executor --policy-arn arn:aws:iam:
 
 readonly ROLE_ARN=$(python -c "
 import json
-print json.load( open('.lambda-executor.role.json', 'r') )['Role']['Arn']
+print( json.load( open('.lambda-executor.role.json', 'r') )['Role']['Arn'] )
 ")
 
 # create the lambdas

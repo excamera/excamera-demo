@@ -4,7 +4,7 @@
 echo "removing s3 bucket"
 readonly BUCKET=$(python -c "
 import json
-print json.load( open('.bucket.s3.json', 'r') )['Location'][1:]
+print( json.load( open('.bucket.s3.json', 'r') )['Location'][1:] )
 ")
 aws s3 rm s3://$BUCKET --recursive
 aws s3api delete-bucket --bucket $BUCKET
