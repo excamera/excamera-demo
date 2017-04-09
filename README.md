@@ -96,7 +96,7 @@ will generate a model to recognize [John Emmons'](http://johnemmons.com) face
 then use the model to check if John's face is in a photo.
 
 
-####Training
+#### Training
 
 ![](scripts/pics/john0.jpg)
 
@@ -106,7 +106,7 @@ $ cd scripts
 $ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
 ```
 
-####Recognition
+#### Recognition
 
 Training image              | Test image 
 :--------------------------:|:-------------------------:
