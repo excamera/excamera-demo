@@ -98,7 +98,7 @@ then use the model to check if John's face is in a photo.
 
 **Training**
 We will use the photograph of John below to train our face recognizer.
-![](scripts/pics/john0.jpg)
+![](scripts/pics/john0.jpg | height=100)
 
 ```bash
 # generate a model for John's face
@@ -109,7 +109,7 @@ $ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
 **Recognition**
 Training image             | Test image 
 :-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg)| ![](scripts/pics/john1.jpg)
+![](scripts/pics/john0.jpg | height=100)| ![](scripts/pics/john1.jpg | height=100)
 
 ```bash
 # use the model to see if John's face is present in an image
@@ -119,7 +119,7 @@ True
 
 Training image             | Test image 
 :-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg)| ![](scripts/pics/john2.jpg)
+![](scripts/pics/john0.jpg | height=100)| ![](scripts/pics/john2.jpg | height=100)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
@@ -127,7 +127,7 @@ True
 ```
 Training image             | Test image 
 :-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg)| ![](scripts/pics/jim-carrey.jpg)
+![](scripts/pics/john0.jpg | height=100)| ![](scripts/pics/jim-carrey.jpg | height=100)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
@@ -136,14 +136,15 @@ False
 
 ### About Us:
 
-My name is [John Emmons](http://johnemmons.com) and I am a computer science PhD
-student at Stanford University. I solve problems at the intersection of computer
-systems and machine learning (especially computer vision).
+The main author of this demo is [John Emmons](http://johnemmons.com); John is a
+computer science PhD student at Stanford University whose research is at the
+intersection of computer systems and machine learning (especially computer
+vision).
 
-If you like this work and want to talk more about it, feel free to drop me a
+If you like this work and want to learn more about it, feel free to drop John a
 line a [mail@johnemmons.com](mailto:mail@johnemmons.com). And if this work
-inspires you to do your own related work, please cite me and my research group's
-work! (see below)
+inspires you to do your own related work, please cite our research group! (see
+below)
 
 ### Citation:
 
