@@ -96,7 +96,8 @@ will generate a model to recognize [John Emmons'](http://johnemmons.com) face
 then use the model to check if John's face is in a photo.
 
 
-#### Training
+#### Model generation
+
 
 Training image              |
 :---------------------------:
@@ -157,7 +158,7 @@ False
 
 The main author of this demo is [John Emmons](http://johnemmons.com); John is a
 computer science PhD student at Stanford University whose research is at the
-intersection of computer systems and machine learning (especially computer
+intersection of computer systems and machine learning (primarily computer
 vision).
 
 If you like this work and want to learn more about it, feel free to drop John a
