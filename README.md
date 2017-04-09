@@ -11,7 +11,7 @@ binaries can executed during a lambda invocation! We take advantage of this
 *feature* and run a full-blown deep neural network based face recognition tool
 on AWS lambda which can be used to detect and recognize people in jpeg images.
 
-See our [blog post](BLOG.md) for a detailed description of the system and the
+See our [blog post](blog/BLOG.md) for a detailed description of the system and the
 machine learning methods that underpin this work. And if this project sparks new
 ideas or influences your research, please cite us (see below)!
 
