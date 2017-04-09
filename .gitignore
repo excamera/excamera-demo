@@ -1,5 +1,6 @@
 # dependencies
 blobs
+.venv
 .bucket.s3.json
 .lambda-executor.role.json
 .prepare-face-recognizer.lambda.json
