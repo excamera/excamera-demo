@@ -100,40 +100,56 @@ then use the model to check if John's face is in a photo.
 
 Training image              |
 :---------------------------:
-![](scripts/pics/john0.jpg) |
+![](blog/pics/john0.jpg) |
 
 ```bash
 # generate a model for John's face
 $ cd scripts
 $ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
+reading input file
+connecting to AWS lambda
+waiting for remote lambda worker to finish
+reading result from remote lambda worker
 ```
 
 #### Recognition
 
 Training image              | Test image 
 :--------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg) | ![](scripts/pics/john1.jpg)
+![](blog/pics/john0.jpg) | ![](blog/pics/john1.jpg)
 
 ```bash
 # use the model to see if John's face is present in an image
 $ ./recognize_face.py john.model.csv pics/john1.jpg
+reading input files
+connecting to AWS lambda
+waiting for remote lambda worker to finish
+reading result from remote lambda worker
 True
 ```
 
 Training image              | Test image 
 :--------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg) | ![](scripts/pics/john2.jpg)
+![](blog/pics/john0.jpg) | ![](blog/pics/john2.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
+reading input files
+connecting to AWS lambda
+waiting for remote lambda worker to finish
+reading result from remote lambda worker
 True
 ```
 Training image              | Test image 
 :--------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg) | ![](scripts/pics/jim-carrey.jpg)
+![](blog/pics/john0.jpg) | ![](blog/pics/jim-carrey.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
+reading input files
+connecting to AWS lambda
+waiting for remote lambda worker to finish
+reading result from remote lambda worker
 False
 ```
 
