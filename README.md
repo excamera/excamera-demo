@@ -98,7 +98,9 @@ then use the model to check if John's face is in a photo.
 
 #### Training
 
-![](scripts/pics/john0.jpg)
+Training image              |
+:---------------------------:
+![](scripts/pics/john0.jpg) |
 
 ```bash
 # generate a model for John's face
