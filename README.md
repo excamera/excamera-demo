@@ -96,8 +96,8 @@ will generate a model to recognize [John Emmons'](http://johnemmons.com) face
 then use the model to check if John's face is in a photo.
 
 
-**Training**
-We will use the photograph of John below to train our face recognizer.
+####Training
+
 ![](scripts/pics/john0.jpg)
 
 ```bash
@@ -106,10 +106,11 @@ $ cd scripts
 $ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
 ```
 
-**Recognition**
-Training image             | Test image 
-:-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg)| ![](scripts/pics/john1.jpg)
+####Recognition
+
+Training image              | Test image 
+:--------------------------:|:-------------------------:
+![](scripts/pics/john0.jpg) | ![](scripts/pics/john1.jpg)
 
 ```bash
 # use the model to see if John's face is present in an image
@@ -117,17 +118,17 @@ $ ./recognize_face.py john.model.csv pics/john1.jpg
 True
 ```
 
-Training image             | Test image 
-:-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg)| ![](scripts/pics/john2.jpg)
+Training image              | Test image 
+:--------------------------:|:-------------------------:
+![](scripts/pics/john0.jpg) | ![](scripts/pics/john2.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
 True
 ```
-Training image             | Test image 
-:-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg)| ![](scripts/pics/jim-carrey.jpg)
+Training image              | Test image 
+:--------------------------:|:-------------------------:
+![](scripts/pics/john0.jpg) | ![](scripts/pics/jim-carrey.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
