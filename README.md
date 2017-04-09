@@ -98,7 +98,7 @@ then use the model to check if John's face is in a photo.
 
 **Training**
 We will use the photograph of John below to train our face recognizer.
-![](scripts/pics/john0.jpg | height=100)
+![](scripts/pics/john0.jpg)
 
 ```bash
 # generate a model for John's face
@@ -109,7 +109,7 @@ $ ./train_face_recognizer.py pics/john0.jpg > john.model.csv
 **Recognition**
 Training image             | Test image 
 :-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg | height=100)| ![](scripts/pics/john1.jpg | height=100)
+![](scripts/pics/john0.jpg)| ![](scripts/pics/john1.jpg)
 
 ```bash
 # use the model to see if John's face is present in an image
@@ -119,7 +119,7 @@ True
 
 Training image             | Test image 
 :-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg | height=100)| ![](scripts/pics/john2.jpg | height=100)
+![](scripts/pics/john0.jpg)| ![](scripts/pics/john2.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
@@ -127,7 +127,7 @@ True
 ```
 Training image             | Test image 
 :-------------------------:|:-------------------------:
-![](scripts/pics/john0.jpg | height=100)| ![](scripts/pics/jim-carrey.jpg | height=100)
+![](scripts/pics/john0.jpg)| ![](scripts/pics/jim-carrey.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
