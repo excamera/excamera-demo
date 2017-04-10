@@ -1,6 +1,11 @@
 Serverless Face Recognition
 ---
 
+### Goal:
+
+Build an elastic (i.e. horizontally scalable) system that uses deep
+convolutional neural networks to perform face detection and recognition.
+
 ### Description:
 
 Serverless compute platforms such as Amazon Web Services (AWS) lambda were
@@ -16,10 +21,6 @@ based face recognition tool
 ([openface](https://cmusatyalab.github.io/openface/)) on AWS lambda. The code in
 this repository gives you everything you need to detect and recognize faces in
 jpeg images. (with zero configuration or model tuning!)
-
-### Video and image face search 
-
-
 
 ### Prerequisites:
 
@@ -177,7 +178,7 @@ below)
 ### Acknowledgements:
 
 This work was done as part of preparing a demonstration for
-[ExCamera](http://ex.camera)
+[[ExCamera](http://ex.camera)]
 [pdf](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-fouladi.pdf),
 which was presented at [NSDI'17](https://www.usenix.org/conference/nsdi17). I
 would like to thank all of the authors on the ExCamera paper for giving me

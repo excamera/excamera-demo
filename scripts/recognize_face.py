@@ -47,7 +47,7 @@ def main():
     res = eval(response['Payload'].read())
     try:
         face_present =  res['face_present']
-        print( face_present )
+        print( "\nFaces match: " + str(face_present) )
     except:
         sys.stderr.write( str(res) ) 
 
