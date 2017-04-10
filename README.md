@@ -118,7 +118,7 @@ reading result from remote lambda worker
 
 Training image              | Test image                 | Faces match?
 :--------------------------:|:--------------------------:|:----------------------------:
-![](README.pics/john0.jpg)  | ![](README.pics/john1.jpg) | ![](README.pics/correct.png)
+![](README.pics/john0.jpg)  | ![](README.pics/john1.jpg) | ![](README.pics/correct.jpg)
 
 ```bash
 # use the model to see if John's face is present in an image
@@ -132,7 +132,7 @@ True
 
 Training image              | Test image                | Faces match?
 :--------------------------:|:-------------------------:|:----------------------------:
-![](README.pics/john0.jpg) | ![](README.pics/john2.jpg) | ![](README.pics/correct.png)
+![](README.pics/john0.jpg) | ![](README.pics/john2.jpg) | ![](README.pics/correct.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
@@ -144,7 +144,7 @@ True
 ```
 Training image              | Test image                     | Faces match?
 :--------------------------:|:------------------------------:|:----------------------------: 
-![](README.pics/john0.jpg) | ![](README.pics/jim-carrey.jpg) | ![](README.pics/incorrect.png)
+![](README.pics/john0.jpg) | ![](README.pics/jim-carrey.jpg) | ![](README.pics/incorrect.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/jim-carrey.jpg
