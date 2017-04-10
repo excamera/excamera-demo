@@ -158,9 +158,9 @@ False
 
 ### About Me:
 
-Hi! My name is John Emmons; I am a computer science PhD student at Stanford
-University who works on problems at the intersection of computer system and
-machine learing (primarily computer vision).
+Hi! My name is [John Emmons](http://johnemmons.com); I am a computer science PhD
+student at Stanford University who works on problems at the intersection of
+computer system and machine learing (primarily computer vision).
 
 If you like this work and want to learn more about it, feel free to drop me a
 line a [mail@johnemmons.com](mailto:mail@johnemmons.com). And if this work
@@ -169,7 +169,12 @@ below)
 
 ### Acknowledgements:
 
-I would like to acknowledge...
+This work was done as part of preparing a demonstration for
+[ExCamera](http://ex.camera)
+[pdf](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-fouladi.pdf),
+which was presented at [NSDI'17](https://www.usenix.org/conference/nsdi17). I
+would like to thank all of the authors on the ExCamera paper for giving me
+inspiration for this project and for helping me with the system design aspects.
 
 ### Citation:
 
