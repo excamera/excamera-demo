@@ -4,7 +4,8 @@ Serverless Face Recognition
 ### Goal:
 
 Build an elastic (i.e. horizontally scalable) system that uses deep
-convolutional neural networks to perform face detection and recognition.
+convolutional neural networks to perform face detection and recognition in the
+cloud.
 
 ### Description:
 
