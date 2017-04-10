@@ -11,9 +11,9 @@ binaries can executed during a lambda invocation! We take advantage of this
 *feature* and run a full-blown deep neural network based face recognition tool
 on AWS lambda which can be used to detect and recognize people in jpeg images.
 
-See our [blog post](blog/BLOG.md) for a detailed description of the system and the
-machine learning methods that underpin this work. And if this project sparks new
-ideas or influences your research, please cite us (see below)!
+See our [blog post](blog/BLOG.md) for a detailed description of the system and
+the machine learning methods that underpin this work. And if this project sparks
+new ideas or influences your research, please cite us (see below)!
 
 ### Prerequisites:
 
@@ -101,7 +101,7 @@ then use the model to check if John's face is in a photo.
 
 Training image              |
 :---------------------------:
-![](blog/pics/john0.jpg) |
+![](README.pics/john0.jpg) |
 
 ```bash
 # generate a model for John's face
@@ -117,7 +117,7 @@ reading result from remote lambda worker
 
 Training image              | Test image 
 :--------------------------:|:-------------------------:
-![](blog/pics/john0.jpg) | ![](blog/pics/john1.jpg)
+![](README.pics/john0.jpg) | ![](README.pics/john1.jpg)
 
 ```bash
 # use the model to see if John's face is present in an image
@@ -131,7 +131,7 @@ True
 
 Training image              | Test image 
 :--------------------------:|:-------------------------:
-![](blog/pics/john0.jpg) | ![](blog/pics/john2.jpg)
+![](README.pics/john0.jpg) | ![](README.pics/john2.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
@@ -143,7 +143,7 @@ True
 ```
 Training image              | Test image 
 :--------------------------:|:-------------------------:
-![](blog/pics/john0.jpg) | ![](blog/pics/jim-carrey.jpg)
+![](README.pics/john0.jpg) | ![](README.pics/jim-carrey.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/jim-carrey.jpg

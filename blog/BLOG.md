@@ -1,3 +1,0 @@
-Serverless Face Recognition
----
-
