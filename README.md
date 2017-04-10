@@ -17,6 +17,10 @@ based face recognition tool
 this repository gives you everything you need to detect and recognize faces in
 jpeg images. (with zero configuration or model tuning!)
 
+### Video and image face search 
+
+
+
 ### Prerequisites:
 
 1. You must **have an AWS account** to run this code. Create an account [here](http://aws.amazon.com) if you do not have one already.
@@ -128,7 +132,8 @@ reading input files
 connecting to AWS lambda
 waiting for remote lambda worker to finish
 reading result from remote lambda worker
-True
+
+Faces match: True
 ```
 
 Training image              | Test image                | Faces match?
@@ -141,7 +146,8 @@ reading input files
 connecting to AWS lambda
 waiting for remote lambda worker to finish
 reading result from remote lambda worker
-True
+
+Faces match: True
 ```
 Training image              | Test image                     | Faces match?
 :--------------------------:|:------------------------------:|:----------------------------: 
@@ -153,7 +159,8 @@ reading input files
 connecting to AWS lambda
 waiting for remote lambda worker to finish
 reading result from remote lambda worker
-False
+
+Faces match: False
 ```
 
 ### About Me:
