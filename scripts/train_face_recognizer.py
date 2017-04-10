@@ -21,7 +21,7 @@ def main():
         print( 'usage: ' + sys.argv[0] + ' IMAGE.jpg > FACEVECTORS.csv' )
         print( 'description:' )
         print( '\treturns the augmented feature vectors for the face in IMAGE.csv.' )
-        print( '\tAssume exactly one face in the image' )
+        print( '\tAssume exactly one face in the image.' )
         print()
         sys.exit(0)
 
