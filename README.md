@@ -120,6 +120,7 @@ then use the model to check if John's face is in a photo.
 
 Training image              |
 :---------------------------:
+`scripts/pics/john0.jpg`    |
 ![](README.pics/john0.jpg)  |
 
 ```bash
@@ -136,6 +137,7 @@ reading result from remote lambda worker
 
 Training image              | Test image                 | Faces match?
 :--------------------------:|:--------------------------:|:----------------------------:
+`scripts/pics/john0.jpg`    | `scripts/pics/john1.jpg`   | 
 ![](README.pics/john0.jpg)  | ![](README.pics/john1.jpg) | ![](README.pics/correct.jpg)
 
 ```bash
@@ -149,11 +151,10 @@ reading result from remote lambda worker
 Faces match: True
 ```
 
-Training image              | Test image                | Faces match?
-:--------------------------:|:-------------------------:|:----------------------------:
-scripts/pics/john0.jpg      | scripts/pics/john1.jpg    |
-:--------------------------:|:-------------------------:|:----------------------------:
-![](README.pics/john0.jpg) | ![](README.pics/john2.jpg) | ![](README.pics/correct.jpg)
+Training image              | Test image                 | Faces match?
+:--------------------------:|:--------------------------:|:----------------------------:
+`scripts/pics/john0.jpg`    | `scripts/pics/john2.jpg`   | 
+![](README.pics/john0.jpg)  | ![](README.pics/john2.jpg) | ![](README.pics/correct.jpg)
 
 ```bash
 $ ./recognize_face.py john.model.csv pics/john2.jpg
@@ -166,6 +167,7 @@ Faces match: True
 ```
 Training image              | Test image                     | Faces match?
 :--------------------------:|:------------------------------:|:----------------------------: 
+`scripts/pics/john0.jpg`    | `scripts/pics/jim-carrey.jpg`  | 
 ![](README.pics/john0.jpg) | ![](README.pics/jim-carrey.jpg) | ![](README.pics/incorrect.jpg)
 
 ```bash
