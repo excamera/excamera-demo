@@ -1,4 +1,4 @@
-Serverless Face Recognition (AWSLambdaFace)
+AWSLambdaFace: Serverless Face Recognition
 ---
 
 ### Goal:
