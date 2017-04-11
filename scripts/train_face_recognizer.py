@@ -44,6 +44,8 @@ def main():
     try:
         facevectors =  res['facevectors']
         print( facevectors )
+
+        sys.stderr.write( "\nDone!" )
     except:
         sys.stderr.write( str(res) )
 

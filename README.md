@@ -112,8 +112,8 @@ description:
 
 ### Simple example (code located in `scripts` directory):
 
-To see how things work let's jump into a simple example. The following snippet
-will generate a model to recognize [John Emmons'](http://johnemmons.com) face
+To see how things work let's jump into a simple example. The following snippets
+will generate a model to recognize [John Emmons'](http://johnemmons.com) face,
 then use the model to check if John's face is in a photo.
 
 #### Model generation
@@ -131,6 +131,8 @@ reading input file
 connecting to AWS lambda
 waiting for remote lambda worker to finish
 reading result from remote lambda worker
+
+Done!
 ```
 
 #### Recognition
