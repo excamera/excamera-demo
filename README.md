@@ -33,8 +33,8 @@ deployed to a single AWS region!) This ability to scale out horizontally with
 virtually no additional effort is a tremendous asset; for example, now we can
 perform face recognition across every frame in a video or provide a face
 recognition microservice as part of a larger application. The possibilities are
-endless! (and check out [ExCamera](http://ex.camera) if you want a glimpse of
-some of these possibilities!)
+endless!
+<!-- (and check out [ExCamera](http://ex.camera) if you want a glimpse of some of these possibilities!) -->
 
 ### Prerequisites:
 
