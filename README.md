@@ -203,6 +203,11 @@ which was presented at [NSDI'17](https://www.usenix.org/conference/nsdi17). I
 would like to thank all of the authors on the ExCamera paper for giving me
 inspiration for this project and for helping me with the system design aspects.
 
+I would also like to give a special thanks to [Sadjad
+Fouladi](http://sadjad.org/) and [Deepak
+Narayanan](http://cs.stanford.edu/~deepakn/) for their comments while I wrote
+this README.
+
 ### Citation:
 
 ```
