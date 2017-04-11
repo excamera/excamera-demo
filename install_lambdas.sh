@@ -24,7 +24,7 @@ print( json.load( open('.lambda-executor.role.json', 'r') )['Role']['Arn'] )
 
 # create the lambdas
 echo "adding 'prepare-face-recognizer' lambda"
-sleep 7 # give AWS some time to propagate the role
+sleep 10 # give AWS some time to propagate the role
 
 aws lambda create-function --timeout 300 --memory-size 1536 --function-name prepare-face-recognizer --runtime python2.7 --role $ROLE_ARN --handler awslambda_prepare_face_recognizer.lambda_handler --zip-file fileb://lambdas/awslambda_prepare_face_recognizer.py.zip --environment Variables="{FACE_ROOT=https://s3.amazonaws.com/$UUID/root-495M-2017-02-06.tar.gz,FACE_DEPS=https://s3.amazonaws.com/$UUID/deps.zip,LFS_VECTORS=https://s3.amazonaws.com/$UUID/lfw_face_vectors.csv.gz}" > .prepare-face-recognizer.lambda.json
 
