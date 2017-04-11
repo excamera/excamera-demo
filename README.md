@@ -150,6 +150,7 @@ Faces match: True
 ```
 
 Training image              | Test image                | Faces match?
+:--------------------------:|:-------------------------:|:----------------------------:
 scripts/pics/john0.jpg      | scripts/pics/john1.jpg    |
 :--------------------------:|:-------------------------:|:----------------------------:
 ![](README.pics/john0.jpg) | ![](README.pics/john2.jpg) | ![](README.pics/correct.jpg)
