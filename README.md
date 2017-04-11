@@ -1,4 +1,4 @@
-Serverless Face Recognition (LambdaFace)
+Serverless Face Recognition (AWSLambdaFace)
 ---
 
 ### Goal:
