@@ -197,9 +197,8 @@ below)
 
 ### Acknowledgements:
 
-This work was done as part of preparing a demonstration for
-ExCamera](http://ex.camera)
-[pdf](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-fouladi.pdf),
+This work was done as part of preparing a demonstration for ExCamera
+[[pdf](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-fouladi.pdf)],
 which was presented at [NSDI'17](https://www.usenix.org/conference/nsdi17). I
 would like to thank all of the authors on the ExCamera paper for giving me
 inspiration for this project and for helping me with the system design aspects.
