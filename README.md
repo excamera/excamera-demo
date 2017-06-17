@@ -5,7 +5,8 @@ AWSLambdaFace: Serverless Face Recognition
 
 Build an elastic (i.e. horizontally scalable) system that uses deep
 convolutional neural networks to perform face detection and recognition in the
-cloud.
+cloud. NOTE: this is a simplified version of the demo show on the 
+[AWSLambdaFace](http://blog.johnemmons.com/post/awslambdaface/) blog post.
 
 ### Description:
 
