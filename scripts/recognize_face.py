@@ -21,7 +21,7 @@ def main():
         print( 'usage: ' + sys.argv[0] + ' FACEVECTORS.csv IMAGE.jpg' )
         print( 'description:' )
         print( '\treturns `true` or `false` if the face used to generate' )
-        print( '\tFACEVECTORS.csv is present in IMAGE.csv' )
+        print( '\tFACEVECTORS.csv is present in IMAGE.jpg' )
         print()
         sys.exit(0)
 
