@@ -189,7 +189,7 @@ Faces match: False
 
 Hi! My name is [John Emmons](http://johnemmons.com); I am a computer science PhD
 student at Stanford University who works on problems at the intersection of
-computer system and machine learning (primarily computer vision).
+computer systems and machine learning (primarily computer vision).
 
 If you like this work and want to learn more about it, feel free to drop me a
 line a [mail@johnemmons.com](mailto:mail@johnemmons.com). And if this work
