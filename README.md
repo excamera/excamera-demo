@@ -110,7 +110,7 @@ $ ./scripts/recognize_face.py --help
 usage: ./recognize_face.py FACEVECTORS.csv IMAGE.jpg
 description:
     returns `True` or `False` if the face used to generate
-    FACEVECTORS.csv is present in IMAGE.csv.
+    FACEVECTORS.csv is present in IMAGE.jpg.
 ```
 
 ### Simple example (code located in `scripts` directory):
