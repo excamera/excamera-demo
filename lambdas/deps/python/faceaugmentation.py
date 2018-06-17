@@ -49,6 +49,10 @@ def get_face_vector(rgbImg, align, net):
         raise(Exception("Unable to find a face"))
     elif len(bbs) > 1:
         raise(Exception("Found more than one face"))
+    else:
+        print "Found exactly one face in image (no error)"
+
+    print('bbs', bbs)
         
     alignedFace = align.align(
         96,
@@ -59,6 +63,7 @@ def get_face_vector(rgbImg, align, net):
     if alignedFace is None:
         raise("Unable to align image")
 
+    print('aligned face shape', alignedFace.shape)
     rep = net.forward(alignedFace)
 
     return rep
@@ -123,7 +128,7 @@ def face_augmentation_server():
         bio = io.BytesIO( base64.b64decode(img_base64) )
         compressed_img = np.fromstring( bio.read(), dtype=np.uint8 )
         bgrImg = cv2.imdecode(compressed_img, cv2.IMREAD_COLOR)
-        rgbImg = cv2.cvtColor(bgrImg, cv2.COLOR_BGR2RGB)
+        rgbImg = cv2.cvtColor(bgrImg, cv2.COLOR_BGR2RGB)        
 
         print 'augmenting image'
         augmented_images = augment_image(rgbImg)
@@ -134,7 +139,7 @@ def face_augmentation_server():
             try:
                 print 'adding vector'
                 face_feature_vector = get_face_vector(rgbImg, align, net)
-                face_feature_vectors.append( face_feature_vector )
+                face_feature_vectors.append(face_feature_vector)
             except Exception as e:
                 sys.stderr.write( str(e) + '\n' )
 
